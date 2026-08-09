@@ -15,8 +15,16 @@ services:
       - --email-domain=*
       - --skip-provider-button=true
       - --reverse-proxy=true
+      - --session-store-type=redis
+      - --redis-connection-url=redis://valkey:6379
     ports:
       - "3018:4180"
+    networks:
+      - internal
+    restart: unless-stopped
+
+  valkey:
+    image: valkey/valkey:8
     networks:
       - internal
     restart: unless-stopped
