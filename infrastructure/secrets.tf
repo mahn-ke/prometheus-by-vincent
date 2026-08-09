@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    random = {
-      source  = "hashicorp/random"
-      version = "~> 3.7"
-    }
-  }
-}
-
 resource "random_bytes" "cookie_secret" {
   length = 32
 }
