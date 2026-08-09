@@ -16,7 +16,7 @@ services:
       - --skip-provider-button=true
       - --reverse-proxy=true
     ports:
-      - "127.0.0.1:9090:4180"
+      - "127.0.0.1:3018:4180"
     networks:
       - internal
     restart: unless-stopped
