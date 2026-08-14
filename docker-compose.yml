@@ -17,6 +17,8 @@ services:
       - --reverse-proxy=true
       - --session-store-type=redis
       - --redis-connection-url=redis://valkey:6379
+      # Accept Keycloak-issued service-account JWTs (aud must match --client-id)
+      - --skip-jwt-bearer-tokens=true
     ports:
       - "3018:4180"
     networks:
