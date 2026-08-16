@@ -19,7 +19,7 @@ scrape_configs:
         refresh_interval: 30s
         filters:
           - name: network
-            values: ['prometheus-by-vincent_internal']
+            values: ['prometheus_internal']
     relabel_configs:
       - source_labels: [__meta_docker_container_label_prometheus_scrape]
         action: keep
