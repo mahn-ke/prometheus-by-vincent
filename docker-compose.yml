@@ -22,7 +22,7 @@ services:
       # Allow CORS preflight requests (OPTIONS) from local Perses
       - --skip-auth-preflight=true
     ports:
-      - "3018:4180"
+      - "9090:4180"
     networks:
       - internal
     restart: unless-stopped
