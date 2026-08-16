@@ -8,6 +8,8 @@ services:
       - --client-id=${OAUTH_CLIENT_ID}
       - --client-secret=${OAUTH_CLIENT_SECRET}
       - --cookie-secret=${OAUTH2_PROXY_COOKIE_SECRET}
+      - --session-store-type=redis
+      - --redis-connection-url=redis://valkey:6379
       - --cookie-secure=true
       - --http-address=0.0.0.0:4180
       - --upstream=http://prometheus:9090
@@ -21,6 +23,20 @@ services:
       - --skip-auth-preflight=true
     ports:
       - "9090:4180"
+    depends_on:
+      - valkey
+    networks:
+      - internal
+    restart: unless-stopped
+
+  valkey:
+    image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
+    command:
+      - valkey-server
+      - --save
+      - ""
+      - --appendonly
+      - no
     networks:
       - internal
     restart: unless-stopped
