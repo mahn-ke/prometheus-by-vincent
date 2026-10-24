@@ -42,7 +42,7 @@ services:
     restart: unless-stopped
 
   prometheus:
-    image: prom/prometheus:v3.15.1
+    image: ghcr.io/mahn-ke/prometheus-by-vincent/prometheus:latest
     user: root
     command:
       - --config.file=/etc/prometheus/prometheus.yml
@@ -52,7 +52,6 @@ services:
       - --web.cors.origin=http://127\.0\.0\.1:.*
     volumes:
       - data:/prometheus
-      - ./service/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - internal
